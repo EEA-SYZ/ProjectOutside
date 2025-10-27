@@ -1,0 +1,16 @@
+<nz-layout class="layout">
+  <nz-back-top [nzVisibilityHeight]="100"></nz-back-top>
+
+  <app-head [showMenu]="menuPlacement=='top'"></app-head>
+
+  <nz-layout>
+    <nz-sider nzCollapsible *ngIf="menuPlacement=='left'" [(nzCollapsed)]="isCollapsed" [nzWidth]="200" style="background:#fff">
+      <app-menu [isCollapsed]="isCollapsed"></app-menu>
+    </nz-sider>
+
+    <nz-layout style="padding:0 24px 24px">
+      <router-outlet></router-outlet>
+      <nz-footer style="text-align: center;" *ngIf="copyright">{{copyright}}</nz-footer>
+    </nz-layout>
+  </nz-layout>
+</nz-layout>
