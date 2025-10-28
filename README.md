@@ -100,7 +100,7 @@ export interface LoginService {
     /**
      * 登录
      */
-    login(loginData: { login: string, password: string }): Observable<HttpResult<Session>>;
+    login(loginData: { login: string, password: string }): Observable<sult<Session>>;
 
     /**
      * 注销

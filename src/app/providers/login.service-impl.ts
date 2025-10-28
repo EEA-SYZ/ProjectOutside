@@ -10,7 +10,16 @@ export class LoginServiceImpl implements LoginService {
 
     login(loginData: { login: string; password: string; }): Observable<Session> {
         return new Observable(observer => {
-            observer.next(this.getDemoSession());
+            var demo = this.getDemoSession();
+            var invalid = false; // EEA TODO: check loginData.login and loginData.password
+            var userCode = '001', userName = '管理员', token = '1234567890'; // EEA TODO: get userCode, userName, token from server
+            if (invalid) {
+                observer.error('用户名或密码错误');
+            }
+            demo.userCode = userCode;
+            demo.userName = userName;
+            demo.token = token;
+            observer.next(demo);
         });
     }
 
@@ -28,15 +37,22 @@ export class LoginServiceImpl implements LoginService {
 
     private getDemoSession(): Session {
         const result: Session = {
-            userCode: '001',
-            userName: '程新文',
-            token: '1234567890',
+            userCode: null,
+            userName: null,
+            token: null,
             menus: [
                 {
                     title: '控制台',
-                    path: '',
+                    path: '/Pannel',
                     icon: 'home',
                     subMenus: []
+                },
+                {
+                    title: '火场任务记录',
+                    path: 'taskRecord',
+                    subMenus: [
+                        { title: '所有记录', path: '/taskRecord/all' }
+                    ]
                 },
                 {
                     title: '基本资料',
@@ -44,44 +60,44 @@ export class LoginServiceImpl implements LoginService {
                     subMenus: [
                         { title: '角色', path: '/basic/role', icon: 'user', subMenus: [] },
                         { title: '员工', path: '/basic/user', subMenus: [] },
-                        { title: '商品', path: '', subMenus: [] },
-                        { title: '门店', path: '', subMenus: [] },
+                        { title: '分队', path: '/basic/team', subMenus: [] },
+                        { title: '近期心理健康报告', path: '/basic/report', subMenus: [] },
                     ]
                 },
-                {
-                    title: '采购管理',
+                /*{
+                    title: '心理健康测评',
                     path: '',
                     icon: 'home',
                     subMenus: [
-                        { title: '采购订单', path: '', subMenus: [] },
-                        { title: '自营进货单', path: '', subMenus: [] },
-                        { title: '采购退货单', path: '', subMenus: [] },
-                        { title: '采购权限', path: '', subMenus: [] },
+                        { title: '心理健康一键测评', path: '/test/directly', subMenus: [] },
+                        { title: '心理健康测评报告', path: '/test/report', subMenus: [] },
+                        { title: '心理健康测评问卷添加', path: '/test/add', subMenus: [] },
+                        { title: '火场压力报告', path: '/test/reportOffire', subMenus: [] },
                     ]
                 },
                 {
-                    title: '零售管理',
+                    title: '训练情况',
                     path: '',
                     subMenus: [
-                        { title: '门店', path: '', subMenus: [] },
-                        { title: '补货策略', path: '', subMenus: [] },
-                        { title: '补货单', path: '', subMenus: [] },
-                        { title: '配货单', path: '', subMenus: [] },
-                        { title: '配货退货单', path: '', subMenus: [] },
+                        { title: '训练情况报告', path: '/training/report', subMenus: [] },
+                        { title: '训练情况录入', path: '/training/import', subMenus: [] },
+                        { title: '心理训练计划', path: '/training/plan', subMenus: [] },
+                        { title: '分队情况汇总', path: '/training/team', subMenus: [] },
+                        { title: '分队人员变动配置', path: '/training/memberManagement', subMenus: [] },
                     ]
                 },
                 {
-                    title: '财务管理',
+                    title: '火场情况',
                     path: '',
                     subMenus: [
-                        { title: '结算单位', path: '', subMenus: [] },
-                        { title: '财务科目', path: '', subMenus: [] },
-                        { title: '对账', path: '', subMenus: [] },
-                        { title: '发票登记', path: '', subMenus: [] },
-                        { title: '应收款管理', path: '', subMenus: [] },
-                        { title: '应付款管理', path: '', subMenus: [] },
+                        { title: '火场查询', path: '/fire/query', subMenus: [] },
+                        { title: '火场数据手动录入', path: '/fire/import', subMenus: [] },
+                        { title: '火场心理情况报告', path: '/fire/report', subMenus: [] },
+                        { title: '火场心理状态风险评估', path: '/fire/risk', subMenus: [] },
+                        { title: '场后心理防控建议', path: '/fire/advice', subMenus: [] },
+                        { title: '场前岗位变动建议', path: '/fire/adviceOnManagement', subMenus: [] },
                     ]
-                }
+                }*/
             ],
             permissions: [
                 { code: '/role/view', name: '角色查看权' },

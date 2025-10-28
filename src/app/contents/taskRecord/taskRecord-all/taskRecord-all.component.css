@@ -1,0 +1,162 @@
+section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  box-sizing: border-box;
+}
+
+h1 {
+  color: #2c3e50;
+  margin: 0 0 25px;
+  font-size: 24px;
+  font-weight: 600;
+  text-align: left;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid #f0f2f5;
+}
+
+th {
+  background-color: #f8fafc;
+  color: #475569;
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+td {
+  color: #334155;
+  font-size: 14px;
+}
+
+tr:hover td {
+  background-color: #fefeff;
+}
+
+/* 操作按钮样式 */
+td button {
+  padding: 6px 12px;
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.2s;
+}
+
+td button:hover {
+  background-color: #2563eb;
+}
+
+/* 分页样式 */
+section > div {
+  margin-top: 18px;
+  text-align: center;
+}
+
+#prevPage, #nextPage {
+  padding: 7px 14px;
+  margin: 0 6px;
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 14px;
+}
+
+#prevPage:hover, #nextPage:hover {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+#prevPage:disabled, #nextPage:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: white;
+}
+
+#pageInfo {
+  color: #64748b;
+  font-size: 14px;
+  margin: 0 10px;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  th, td {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+  h1 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  td button {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+}
+
+/* 保留之前的基础样式，仅补充修改按钮的美化样式 */
+
+/* 修改按钮美化 */
+td button {
+  padding: 6px 14px;
+  background-color: #4f46e5; /* 深紫蓝色主色调 */
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 4px rgba(79, 70, 229, 0.15);
+}
+
+/* 悬停效果 */
+td button:hover {
+  background-color: #4338ca; /* 深色变体 */
+  transform: translateY(-1px); /* 轻微上浮 */
+  box-shadow: 0 4px 8px rgba(79, 70, 229, 0.2);
+}
+
+/* 点击效果 */
+td button:active {
+  transform: translateY(0); /* 恢复原位 */
+  box-shadow: 0 2px 2px rgba(79, 70, 229, 0.15);
+}
+
+/* 禁用状态（如需） */
+td button:disabled {
+  background-color: #93c5fd;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  opacity: 0.7;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  td button {
+    padding: 4px 10px;
+    font-size: 12px;
+  }
+}

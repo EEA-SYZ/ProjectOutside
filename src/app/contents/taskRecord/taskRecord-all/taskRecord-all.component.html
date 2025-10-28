@@ -1,0 +1,32 @@
+<section>
+    <h1>数据表格</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>编号</th>
+                <th>时间</th>
+                <th>地点</th>
+                <th>严重程度</th>
+                <th>持续时间</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <tr *ngFor="let each of list">
+                <td>{{each['id']}}</td>
+                <td>{{each['task_ date']}}</td>
+                <td>{{each['location']}}</td>
+                <td>{{each['severity']}}</td>
+                <td>{{each['duration']}}</td>
+                <td><button>修改</button></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div>
+        <button id="prevPage">上一页</button>
+        <span id="pageInfo">第 1 页</span>
+        <button id="nextPage">下一页</button>
+    </div>
+</section>

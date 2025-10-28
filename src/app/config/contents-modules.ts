@@ -10,4 +10,5 @@ export const GlobalProviders: any[] = [];
 export const ContentsRoutes: Route[] = [
     { path: '', loadChildren: 'app/contents/role/role.module#RoleModule' },
     { path: '', loadChildren: 'app/contents/user/user.module#UserModule' },
+    { path: '', loadChildren: 'app/contents/taskRecord/taskRecord.module#TaskRecord' },
 ];

@@ -15,10 +15,10 @@ export const menuConfig = {
 };
 
 // 版权配置
-export const copyright = '智能心理健康管理系统 ©2025 Implement By ***'; // EEA TODO
+export const copyright = '智能心理健康管理系统 ©2025 Implement By 本系统开发者';
 
 // session配置
 export const sessionConfig = {
     // session在浏览器的storerage中的存储key
-    store_key: '__my-user-session__' // EEA TO_MAKE_CLEAR
+    store_key: '__my-user-session__'
 };
