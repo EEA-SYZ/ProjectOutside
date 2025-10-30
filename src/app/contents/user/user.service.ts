@@ -3,172 +3,146 @@ import { Observable } from 'rxjs/Observable';
 
 import { HttpResult } from 'app/base/shared/model/http-result';
 import { Page } from 'app/base/shared/model/page';
-
-export class UserFilter {
-    codeEq?: string;
-    nameLk?: string;
-    mobileLk?: string;
-    pageNumber = 0;
-    pageSize = 10;
-}
-
-export class QUser {
-    code?: string;
-    name?: string;
-    mobile?: string;
-    checked?= false;
-}
-
-export class User {
-    code?: string;
-    login?: string;
-    name?: string;
-    mobile?: string;
-    hasOperateView?= false;
-    hasPropertyView?= false;
-    hasBrandView?= false;
-    remark?: string;
-}
-
-export class UserRole {
-    name?: string;
-    checked?= false;
-    remark?: string;
-}
+import { Permission } from 'app/base/shared/model/session';
+import { SessionService } from 'app/base/shared/session.service';
 
 @Injectable()
 export class UserService {
-
-    constructor() { }
-
-    public getList(filter: UserFilter): Observable<HttpResult<Page<QUser>>> {
-        const roles: QUser[] = userData.filter(r => {
-            if (filter.codeEq != null && r.code !== filter.codeEq) {
-                return false;
+    // 获取总记录数
+    getRecordNumber() : Observable<number> {
+        return new Observable<number>(observer => {
+            observer.next(this.getList().length);
+        });
+    }
+    // 获取分页信息
+    getUsersList(page: number, size: number): Observable<any> {
+        return new Observable<any>(observer => {
+            var begin = (page - 1) * size;
+            var end = begin + size;
+            var res = [];
+            for (var i = begin; i < end; i++) {
+                if (i < this.getList().length) {
+                    res.push(this.getList()[i]);
+                }
             }
-            if (filter.nameLk != null && !r.name.includes(filter.nameLk)) {
-                return false;
-            }
-            return true;
-        });
-
-        return new Observable(observer => {
-            observer.next(new HttpResult(0, 'OK', this.getPageRole(roles, filter.pageNumber, filter.pageSize)));
+            observer.next(res);
         });
     }
-
-    public save(user: User): Observable<HttpResult<string>> {
-        if (user.code) {
-            const u = userData.find(us => us.code === user.code);
-            if (u) {
-                u.name = user.name;
-                u.login = user.login;
-                u.mobile = user.mobile;
-                u.hasOperateView = user.hasOperateView;
-                u.hasPropertyView = user.hasPropertyView;
-                u.hasBrandView = user.hasBrandView;
-                u.remark = user.remark;
-            }
-
-            return new Observable(observer => {
-                observer.next(new HttpResult(0, 'OK', user.code));
-            });
-        } else {
-            user.code = (parseInt(userData[userData.length - 1].code, 10) + 1).toString();
-            userData.push(user);
-            return new Observable(observer => {
-                observer.next(new HttpResult(0, 'OK', user.code));
-            });
-        }
+    private getList() : any[] {
+        const list = [
+            {
+                'id': 1,
+                'username': '管理员',
+                'role': 'admin',
+                'email': null,
+                'created_at': '2025-10-29 11:51:00'
+            },
+            {
+                'id': 2,
+                'username': '张三',
+                'role': 'user',
+                'email': 'zhangsan@123.com',
+                'created_at': '2025-10-29 11:51:00'
+            },
+            {
+                'id': 3,
+                'username': '李四',
+                'role': 'user',
+                'email': 'lisi@123.com',
+                'created_at': '2025-10-29 11:51:00'
+            },
+            {
+                'id': 4,
+                'username': '王五',
+                'role': 'user',
+                'email': 'wangwu@123.com',
+                'created_at': '2025-10-29 11:51:00'
+            },
+            {
+                'id': 5,
+                'username': '赵六',
+                'role': 'user',
+                'email': 'zhaoliu@123.com',
+                'created_at': '2025-10-29 11:51:00'
+            },
+            {
+                'id': 6,
+                'username': '田七',
+                'role': 'user',
+                'email': 'tianqi@123.com',
+                'created_at': '2025-10-29 11:51:00'
+            },
+            {
+                'id': 7,
+                'username': '周八',
+                'role': 'user',
+                'email': 'zhouba@123.com',
+                'created_at': '2025-10-29 11:51:00'
+            },
+            {
+                'id': 8,
+                'username': '吴九',
+                'role': 'user',
+                'email': 'wujiu@123.com',
+                'created_at': '2025-10-29 11:51:00'
+            },
+            {
+                'id': 9,
+                'username': '郑十',
+                'role': 'user',
+                'email': 'zhengshi@123.com',
+                'created_at': '2025-10-29 11:51:00'
+            },
+            {
+                'id': 10,
+                'username': 'Peter',
+                'role': 'user',
+                'email': 'peter@123.com',
+                'created_at': '2025-10-29 11:51:00'
+            },
+            {
+                'id': 11,
+                'username': 'John',
+                'role': 'user',
+                'email': 'john@123.com',
+                'created_at': '2025-10-29 11:51:00'
+            },
+            {
+                'id': 12,
+                'username': 'Mary',
+                'role': 'user',
+                'email': 'mary@123.com',
+                'created_at': '2025-10-29 11:51:00'
+            },
+            {
+                'id': 13,
+                'username': 'Tom',
+                'role': 'user',
+                'email': 'tom@123.com',
+                'created_at': '2025-10-29 11:51:00'
+            },
+            {
+                'id': 14,
+                'username': 'Lily',
+                'role': 'user',
+                'email': 'lily@123.com',
+                'created_at': '2025-10-29 11:51:00'
+            },
+            {
+                'id': 15,
+                'username': 'Jane',
+                'role': 'user',
+                'email': 'jane@123.com',
+                'created_at': '2025-10-29 11:51:00'
+            },
+            {
+                'id': 16,
+                'username': 'Jack',
+                'role': 'user',
+                'email': 'jack@123.com',
+                'created_at': '2025-10-29 11:51:00'
+            },
+        ];
+        return list;
     }
-
-    public delete(userCode: string): Observable<HttpResult<boolean>> {
-        const index = userData.findIndex(u => u.code === userCode);
-        if (index >= 0) {
-            userData.splice(index, 1);
-        }
-        return new Observable(observer => {
-            observer.next(new HttpResult(0, 'OK', true));
-        });
-    }
-
-    public getUser(code: string): Observable<HttpResult<User>> {
-        const user = userData.find(u => u.code === code);
-        return new Observable(observer => {
-            observer.next(new HttpResult(0, 'OK', user));
-        });
-    }
-
-    public addRoles(code: string, roles: Array<string>): Observable<HttpResult<boolean>> {
-        return new Observable(observer => {
-            observer.next(new HttpResult(0, 'OK', true));
-        });
-    }
-
-    public removeRole(userCode: string, roleName: string): Observable<HttpResult<boolean>> {
-        const index = userRoleData.findIndex(r => r.name === roleName);
-        if (index >= 0) {
-            userRoleData.splice(index, 1);
-        }
-
-        return new Observable(observer => {
-            observer.next(new HttpResult(0, 'OK', true));
-        });
-    }
-
-    public getUserRoles(code: string): Observable<HttpResult<Array<UserRole>>> {
-        return new Observable(observer => {
-            observer.next(new HttpResult(0, 'OK', userRoleData));
-        });
-    }
-
-    public resetPassword(code: string, password: string): Observable<HttpResult<boolean>> {
-        return new Observable(observer => {
-            observer.next(new HttpResult(0, 'OK', true));
-        });
-    }
-
-    private getPageRole(roles?: QUser[], pageNumber?: number, pageSize?: number): Page<QUser> {
-        pageNumber = pageNumber ? pageNumber : 0;
-        pageSize = pageSize ? pageSize : 10;
-        roles = roles ? roles : [];
-
-        const page: Page<QUser> = new Page<QUser>();
-        page.totalElements = roles.length;
-        page.totalPages = Math.floor(roles.length / pageSize);
-        page.pageNumber = pageNumber;
-        page.pageSize = pageSize;
-
-        const startIndex = pageNumber * pageSize;
-        const endIndex = Math.min(startIndex + pageSize, roles.length);
-        page.content = roles.slice(startIndex, endIndex);
-        page.hasContent = page.content.length > 0;
-        page.hasNext = endIndex < roles.length;
-        return page;
-    }
-}
-
-const userData: User[] = [
-    { code: '001', name: '员工001', login: 'login001' },
-    { code: '002', name: '员工002', login: 'login002' },
-    { code: '003', name: '员工003', login: 'login003' },
-    { code: '004', name: '员工004', login: 'login004' },
-    { code: '005', name: '员工005', login: 'login005' },
-    { code: '006', name: '员工006', login: 'login006' },
-    { code: '007', name: '员工007', login: 'login007' },
-    { code: '008', name: '员工008', login: 'login008' },
-    { code: '009', name: '员工009', login: 'login009' },
-    { code: '010', name: '员工010', login: 'login010' },
-    { code: '011', name: '员工011', login: 'login011' },
-    { code: '012', name: '员工012', login: 'login012' },
-    { code: '013', name: '员工013', login: 'login013' },
-    { code: '014', name: '员工014', login: 'login014' },
-    { code: '015', name: '员工015', login: 'login015' },
-];
-
-const userRoleData: UserRole[] = [
-    { name: '管理员' },
-    { name: '采购员' },
-    { name: '补货员' },
-    { name: '哈哈哈' },
-];
+};

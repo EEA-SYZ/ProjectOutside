@@ -1,0 +1,77 @@
+<section class="dashboard-section">
+    <!-- 概况部分 -->
+    <div class="overview-section">
+        <h2>概况</h2>
+        <div class="overview-cards">
+            <div class="overview-card">
+                <h3>总用户数</h3>
+                <p class="overview-value" id="total-users">12,458</p>
+                <p class="overview-desc">较上月 <span class="positive-change">+3.2%</span></p>
+            </div>
+            <div class="overview-card">
+                <h3>总测评数</h3>
+                <p class="overview-value" id="total-assessments">8,721</p>
+                <p class="overview-desc">较上月 <span class="positive-change">+5.7%</span></p>
+            </div>
+            <div class="overview-card">
+                <h3>总任务数</h3>
+                <p class="overview-value" id="total-tasks">5,346</p>
+                <p class="overview-desc">较上月 <span class="negative-change">-1.2%</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 风险预警部分 -->
+    <div class="risk-warning-section">
+        <h2>风险预警</h2>
+        <div class="risk-warning-content">
+            <div class="risk-chart-container">
+                <svg id="risk-distribution-chart" width="400" height="300" viewBox="0 0 400 300"></svg>
+                <div class="chart-legend">
+                    <div class="legend-item">
+                        <span class="legend-color high-risk"></span>
+                        <span class="legend-label">高风险用户</span>
+                        <span class="legend-value" id="high-risk-count">328</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color medium-risk"></span>
+                        <span class="legend-label">中风险用户</span>
+                        <span class="legend-value" id="medium-risk-count">845</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color low-risk"></span>
+                        <span class="legend-label">低风险用户</span>
+                        <span class="legend-value" id="low-risk-count">1,257</span>
+                    </div>
+                </div>
+            </div>
+            <div class="risk-metrics">
+                <div class="risk-metric-card">
+                    <h3>已解决预警数</h3>
+                    <p class="metric-value" id="resolved-alerts">642</p>
+                    <p class="metric-desc">本周 <span class="positive-change">+12%</span></p>
+                </div>
+                <div class="risk-metric-card">
+                    <h3>待解决预警数</h3>
+                    <p class="metric-value" id="pending-alerts">287</p>
+                    <p class="metric-desc">本周 <span class="negative-change">-8%</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 历史数据部分 -->
+    <div class="historical-data-section">
+        <h2>历史数据</h2>
+        <div class="historical-charts">
+            <div class="historical-chart-container">
+                <h3>新增测评数 (近7天)</h3>
+                <svg id="new-assessments-chart" width="600" height="250" viewBox="0 0 600 250"></svg>
+            </div>
+            <div class="historical-chart-container">
+                <h3>新增预警数 (近7天)</h3>
+                <svg id="new-alerts-chart" width="600" height="250" viewBox="0 0 600 250"></svg>
+            </div>
+        </div>
+    </div>
+</section>

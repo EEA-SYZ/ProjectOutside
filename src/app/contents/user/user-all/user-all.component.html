@@ -1,8 +1,8 @@
 <section>
-    <h1>任务记录</h1>
+    <h1>用户列表</h1>
     
     <div class="search-container">
-        <input type="text" id="searchInput" placeholder="搜索记录...">
+        <input type="text" id="searchInput" placeholder="搜索用户...">
         <button id="searchButton">搜索</button>
     </div>
     
@@ -10,21 +10,21 @@
         <thead>
             <tr>
                 <th>编号</th>
-                <th>时间</th>
-                <th>地点</th>
-                <th>严重程度</th>
-                <th>持续时间</th>
+                <th>用户名</th>
+                <th>角色</th>
+                <th>邮箱</th>
+                <th>创建时间</th>
                 <th>操作</th>
             </tr>
         </thead>
         <tbody id="tableBody">
             <tr *ngFor="let each of list">
                 <td>{{each['id']}}</td>
-                <td>{{each['task_ date']}}</td>
-                <td>{{each['location']}}</td>
-                <td>{{each['severity']}}</td>
-                <td>{{each['duration']}}</td>
-                <td><button>详情</button></td>
+                <td>{{each['username']}}</td>
+                <td>{{each['role']}}</td>
+                <td>{{each['email']}}</td>
+                <td>{{each['created_at']}}</td>
+                <td><button (click)="detailOfUser(each['id'])">详情</button></td>
             </tr>
         </tbody>
     </table>

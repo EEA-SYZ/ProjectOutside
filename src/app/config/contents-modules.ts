@@ -8,7 +8,7 @@ export const GlobalProviders: any[] = [];
 
 // 客户自定的模块注册
 export const ContentsRoutes: Route[] = [
-    { path: '', loadChildren: 'app/contents/role/role.module#RoleModule' },
-    { path: '', loadChildren: 'app/contents/user/user.module#UserModule' },
+    { path: '', loadChildren: 'app/contents/pannel/pannel.module#Pannel' },
     { path: '', loadChildren: 'app/contents/taskRecord/taskRecord.module#TaskRecord' },
+    { path: '', loadChildren: 'app/contents/user/user.module#User' },
 ];

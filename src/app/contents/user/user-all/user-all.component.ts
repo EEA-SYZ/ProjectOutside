@@ -6,23 +6,24 @@ import { Session } from 'app/base/shared/model/session';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { FormUtil } from 'app/base/shared/form-util';
 
-import { TaskRecordService } from '../taskRecord.service';
+import { UserService } from '../user.service';
 import { r } from '@angular/core/src/render3';
+import { User } from '../user.module';
 
 @Component({
     moduleId: module.id,
-    templateUrl: 'taskRecord-all.component.html',
-    styleUrls: ['taskRecord-all.component.css']
+    templateUrl: 'user-all.component.html',
+    styleUrls: ['user-all.component.css']
 })
-export class TaskRecordAllComponent implements OnInit {
-    index: number;                 // 当前页码
-    size: number;                  // 每页显示的数量
-    total: number;                 // 总记录数
-    pageCount: number = 1;         // 总页数
-    list : any[] = [];             // 当前页面显示的任务记录列表
+export class UserAllComponent implements OnInit {
+    index: number;           // 当前页码
+    size: number;            // 每页显示的数量
+    total: number;           // 总记录数
+    pageCount: number = 1;   // 总页数
+    list : any[] = [];       // 当前页面显示的用户列表
     constructor(
         private router: Router,
-        private service: TaskRecordService,
+        private service: UserService,
     ) {}
     ngOnInit() {
         this.index = parseInt(document.getElementById('pageIndex').textContent)
@@ -61,8 +62,8 @@ export class TaskRecordAllComponent implements OnInit {
         }
         (document.getElementById("jumpToPage") as HTMLInputElement).value = "";
     }
-    // 查看任务记录详情
-    detailOfRecord(recordId: number) {
+    // 查看用户详情
+    detailOfUser(userId: number) {
         ;
     }
     _jumpToPage(index: number) {
@@ -72,7 +73,7 @@ export class TaskRecordAllComponent implements OnInit {
         this.updateList();
     }
     updateList() {
-        this.service.getRecordsList(this.index, this.size).subscribe(
+        this.service.getUsersList(this.index, this.size).subscribe(
             result => {
                 this.list = result;
             },

@@ -11,10 +11,14 @@ export class LoginServiceImpl implements LoginService {
     login(loginData: { login: string; password: string; }): Observable<Session> {
         return new Observable(observer => {
             var demo = this.getDemoSession();
-            var invalid = false; // EEA TODO: check loginData.login and loginData.password
-            var userCode = '001', userName = '管理员', token = '1234567890'; // EEA TODO: get userCode, userName, token from server
+            var invalid = loginData.password !== '123456';
+            var role = loginData.login;
+            var userCode = '001', userName = '管理员', token = '1234567890';
             if (invalid) {
                 observer.error('用户名或密码错误');
+            }
+            if (role !== 'admin') {
+                observer.error('非管理员用户不允许登录后台');
             }
             demo.userCode = userCode;
             demo.userName = userName;
@@ -43,61 +47,33 @@ export class LoginServiceImpl implements LoginService {
             menus: [
                 {
                     title: '控制台',
-                    path: '/Pannel',
+                    path: '/pannel',
                     icon: 'home',
                     subMenus: []
                 },
                 {
+                    title: '用户管理',
+                    path: '',
+                    subMenus: [
+                        { title: '所有用户', path: '/user/all' }
+                    ]
+                },
+                {
                     title: '火场任务记录',
-                    path: 'taskRecord',
+                    path: '',
                     subMenus: [
-                        { title: '所有记录', path: '/taskRecord/all' }
+                        { title: '所有记录', path: '/taskRecord/all' },
+                        { title: '添加记录', path: '/taskRecord/add' }
                     ]
                 },
                 {
-                    title: '基本资料',
+                    title: '风险预警管理',
                     path: '',
                     subMenus: [
-                        { title: '角色', path: '/basic/role', icon: 'user', subMenus: [] },
-                        { title: '员工', path: '/basic/user', subMenus: [] },
-                        { title: '分队', path: '/basic/team', subMenus: [] },
-                        { title: '近期心理健康报告', path: '/basic/report', subMenus: [] },
+                        { title: '所有预警', path: '/riskWarning/all' },
+                        { title: '待处理', path: '/riskWarning/wait' }
                     ]
                 },
-                /*{
-                    title: '心理健康测评',
-                    path: '',
-                    icon: 'home',
-                    subMenus: [
-                        { title: '心理健康一键测评', path: '/test/directly', subMenus: [] },
-                        { title: '心理健康测评报告', path: '/test/report', subMenus: [] },
-                        { title: '心理健康测评问卷添加', path: '/test/add', subMenus: [] },
-                        { title: '火场压力报告', path: '/test/reportOffire', subMenus: [] },
-                    ]
-                },
-                {
-                    title: '训练情况',
-                    path: '',
-                    subMenus: [
-                        { title: '训练情况报告', path: '/training/report', subMenus: [] },
-                        { title: '训练情况录入', path: '/training/import', subMenus: [] },
-                        { title: '心理训练计划', path: '/training/plan', subMenus: [] },
-                        { title: '分队情况汇总', path: '/training/team', subMenus: [] },
-                        { title: '分队人员变动配置', path: '/training/memberManagement', subMenus: [] },
-                    ]
-                },
-                {
-                    title: '火场情况',
-                    path: '',
-                    subMenus: [
-                        { title: '火场查询', path: '/fire/query', subMenus: [] },
-                        { title: '火场数据手动录入', path: '/fire/import', subMenus: [] },
-                        { title: '火场心理情况报告', path: '/fire/report', subMenus: [] },
-                        { title: '火场心理状态风险评估', path: '/fire/risk', subMenus: [] },
-                        { title: '场后心理防控建议', path: '/fire/advice', subMenus: [] },
-                        { title: '场前岗位变动建议', path: '/fire/adviceOnManagement', subMenus: [] },
-                    ]
-                }*/
             ],
             permissions: [
                 { code: '/role/view', name: '角色查看权' },

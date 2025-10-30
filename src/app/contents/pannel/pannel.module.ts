@@ -4,9 +4,9 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
-import { UserRoutingModule } from './user-routes.module';
-import { UserService } from './user.service';
-import { UserAllComponent } from './user-all/user-all.component';
+import { PannelRoutingModule } from './pannel-routes.module';
+import { PannelService } from './pannel.service';
+import { PannelComponent } from './pannel.component';
 
 @NgModule({
     imports: [
@@ -15,13 +15,13 @@ import { UserAllComponent } from './user-all/user-all.component';
         FormsModule,
         ReactiveFormsModule,
         NgZorroAntdModule,
-        UserRoutingModule
+        PannelRoutingModule,
     ],
     declarations: [
-        UserAllComponent,
+        PannelComponent,
     ],
     exports: [],
     entryComponents: [],
-    providers: [UserService]
+    providers: [PannelService]
 })
-export class User { }
+export class Pannel { }
