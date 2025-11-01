@@ -64,7 +64,7 @@ export class UserAllComponent implements OnInit {
     }
     // 查看用户详情
     detailOfUser(userId: number) {
-        ;
+        this.router.navigate(['/frame/user/detail', userId]);
     }
     _jumpToPage(index: number) {
         if (index < 1 || index > this.pageCount) return;

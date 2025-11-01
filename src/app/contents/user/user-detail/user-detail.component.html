@@ -1,0 +1,122 @@
+<section class="content">
+  <!-- 返回按钮 -->
+  <div class="back-button-container mb-4">
+    <button id="back-button" class="back-btn" (click)="backToList()">
+      <i class="fa fa-arrow-left mr-2"></i>返回列表
+    </button>
+  </div>
+
+  <!-- 基本信息模块 -->
+  <div class="basic-info">
+    <h2>基本信息</h2>
+    <div class="info-grid">
+      <div class="info-item">
+        <span class="label">用户ID:</span>
+        <span class="value" id="user-id">{{data['user']['id']}}</span>
+      </div>
+      <div class="info-item">
+        <span class="label">用户名:</span>
+        <span class="value" id="username">{{data['user']['username']}}</span>
+      </div>
+      <div class="info-item">
+        <span class="label">角色类型:</span>
+        <span class="value" id="role-type">{{data['user']['role']}}</span>
+      </div>
+      <div class="info-item">
+        <span class="label">电子邮件:</span>
+        <span class="value" id="email">{{data['user']['email']}}</span>
+      </div>
+      <div class="info-item">
+        <span class="label">注册时间:</span>
+        <span class="value" id="register-time">{{data['user']['created_at']}}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 心理测评模块 -->
+  <div class="psychological-assessment">
+    <h2>心理测评</h2>
+    <div class="table-container">
+      <table class="assessment-table">
+        <thead>
+          <tr>
+            <th>测评ID</th>
+            <th>测评时间</th>
+            <th>分数</th>
+            <th>风险等级</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody id="assessment-list">
+          <!-- 示例记录 -->
+          <tr *ngFor="let each of data['assessments']">
+            <td>{{each['id']}}</td>
+            <td>{{each['date']}}</td>
+            <td>{{each['score']}}</td>
+            <td class="risk-level medium">{{each['level']}}</td>
+            <td><button class="detail-btn">详情</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 任务记录模块 -->
+  <div class="task-record">
+    <h2>任务记录</h2>
+    <div class="table-container">
+      <table class="task-table">
+        <thead>
+          <tr>
+            <th>任务ID</th>
+            <th>任务时间</th>
+            <th>地点</th>
+            <th>严重程度</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody id="task-list">
+          <!-- 示例记录 -->
+          <tr *ngFor="let each of data['task_records']">
+            <td>{{each['id']}}</td>
+            <td>{{each['date']}}</td>
+            <td>{{each['location']}}</td>
+            <td class="severity high">{{each['severity']}}</td>
+            <td><button class="detail-btn">详情</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 风险预警模块 -->
+  <div class="risk-warning">
+    <h2>风险预警</h2>
+    <div class="table-container">
+      <table class="warning-table">
+        <thead>
+          <tr>
+            <th>预警ID</th>
+            <th>预警等级</th>
+            <th>备注</th>
+            <th>触发时间</th>
+            <th>处理状态</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody id="warning-list">
+          <!-- 示例记录 -->
+          <tr *ngFor="let each of data['active_warnings']" >
+            <td>{{each['id']}}</td>
+            <td class="warning-level high">{{each['level']}}</td>
+            <td>{{each['message']}}</td>
+            <td>{{each['trigger_time']}}</td>
+            <td class="status pending">{{each['resolved']?"已处理":"待处理"}}</td>
+            <td><button class="detail-btn">详情</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+

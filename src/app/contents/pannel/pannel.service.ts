@@ -8,6 +8,7 @@ import { SessionService } from 'app/base/shared/session.service';
 
 @Injectable()
 export class PannelService {
+    // 获取统计数据
     getStatistics() : Observable<{}> {
         return new Observable(observer => {
             observer.next({

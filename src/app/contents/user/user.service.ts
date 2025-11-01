@@ -28,6 +28,33 @@ export class UserService {
             observer.next(res);
         });
     }
+    // 获取用户详情
+    getUserDatail(id: number): Observable<any> {
+        return new Observable<any>(observer => {
+            for (var i = 0; i < this.getList().length; i++) {
+                if (this.getList()[i]['id'] == id) {
+                    observer.next({
+                        'user': this.getList()[i],
+                        'assessments': [
+                            {'id': 15, 'data': '2025-8-01', 'score': 82, 'level': '高风险'},
+                            {'id': 18, 'data': '2025-9-01', 'score': 76, 'level': '中等风险'}
+                        ],
+                        'task_records': [
+                            {"id": 20, "date": "2025-09-12", "location": "XX工厂火灾", "severity": "重大"},
+                            {"id": 25, "date": "2025-10-05", "location": "YY仓库火灾", "severity": "较高"}
+                        ],
+                        'active_warnings': [
+                            {
+                                "id": 6, "level": "高风险", 
+                                "message": "近期心理测评得分过高",
+                                "trigger_time":"2025-10-06", "resolved": false
+                            },
+                        ],
+                    });
+                }
+            }
+        });
+    }
     private getList() : any[] {
         const list = [
             {

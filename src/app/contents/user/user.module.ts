@@ -7,6 +7,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { UserRoutingModule } from './user-routes.module';
 import { UserService } from './user.service';
 import { UserAllComponent } from './user-all/user-all.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 @NgModule({
     imports: [
@@ -19,6 +20,7 @@ import { UserAllComponent } from './user-all/user-all.component';
     ],
     declarations: [
         UserAllComponent,
+        UserDetailComponent,
     ],
     exports: [],
     entryComponents: [],
