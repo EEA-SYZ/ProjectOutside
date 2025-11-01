@@ -11,7 +11,7 @@ export const loginConfig = {
 // menu配置
 export const menuConfig = {
     // 菜单位置，可选值为 'left'、'top'
-    placement: 'left'
+    placement: 'top'
 };
 
 // 版权配置

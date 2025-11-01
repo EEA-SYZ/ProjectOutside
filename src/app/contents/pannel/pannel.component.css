@@ -13,6 +13,17 @@
     margin-bottom: 20px;
     padding-bottom: 10px;
     border-bottom: 2px solid #f0f0f0;
+    position: relative;
+}
+
+.dashboard-section h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 60px;
+    height: 2px;
+    background-color: #4a90e2;
 }
 
 /* 概况部分样式 */
@@ -31,17 +42,32 @@
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
 }
 
 .overview-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border-left-color: #4a90e2;
 }
 
 .overview-card h3 {
     color: #666;
     font-size: 1rem;
     margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.overview-card h3::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 16px;
+    background-color: #4a90e2;
+    margin-right: 8px;
+    border-radius: 2px;
 }
 
 .overview-value {
@@ -49,11 +75,34 @@
     font-weight: bold;
     color: #333;
     margin-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+.overview-card:hover .overview-value {
+    color: #4a90e2;
 }
 
 .overview-desc {
     font-size: 0.9rem;
     color: #999;
+    display: flex;
+    align-items: center;
+}
+
+.positive-change, .negative-change {
+    display: flex;
+    align-items: center;
+    margin-left: 5px;
+}
+
+.positive-change::before {
+    content: '↑';
+    margin-right: 2px;
+}
+
+.negative-change::before {
+    content: '↓';
+    margin-right: 2px;
 }
 
 .positive-change {
@@ -83,6 +132,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: box-shadow 0.3s ease;
+}
+
+.risk-chart-container:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .chart-legend {
@@ -97,12 +151,22 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background-color: #f8f9fa;
+    transition: all 0.2s ease;
+}
+
+.legend-item:hover {
+    background-color: #e9ecef;
+    transform: translateY(-2px);
 }
 
 .legend-color {
     width: 12px;
     height: 12px;
     border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .high-risk {
@@ -138,12 +202,42 @@
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.risk-metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #4a90e2, #50e3c2);
+}
+
+.risk-metric-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .risk-metric-card h3 {
     color: #666;
     font-size: 1rem;
     margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.risk-metric-card h3::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 16px;
+    background-color: #4a90e2;
+    margin-right: 8px;
+    border-radius: 2px;
 }
 
 .metric-value {
@@ -151,11 +245,18 @@
     font-weight: bold;
     color: #333;
     margin-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+.risk-metric-card:hover .metric-value {
+    color: #4a90e2;
 }
 
 .metric-desc {
     font-size: 0.9rem;
     color: #999;
+    display: flex;
+    align-items: center;
 }
 
 /* 历史数据部分样式 */
@@ -174,6 +275,11 @@
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+}
+
+.historical-chart-container:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .historical-chart-container h3 {
@@ -181,6 +287,26 @@
     font-size: 1rem;
     margin-bottom: 15px;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.historical-chart-container h3::before,
+.historical-chart-container h3::after {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 1px;
+    background-color: #eee;
+    margin: 0 10px;
+}
+
+/* 确保SVG图表水平居中 */
+#new-assessments-chart, 
+#new-alerts-chart {
+    display: block;
+    margin: 0 auto;
 }
 
 /* 响应式设计 */
@@ -192,4 +318,47 @@
     .overview-cards {
         grid-template-columns: 1fr;
     }
+    
+    #new-assessments-chart, 
+    #new-alerts-chart {
+        width: 100%;
+        height: auto;
+    }
 }
+
+/* 添加图表动画效果 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#risk-distribution-chart,
+#new-assessments-chart,
+#new-alerts-chart {
+    animation: fadeIn 0.8s ease forwards;
+}
+
+/* 添加数值变化动画 */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.overview-value, .metric-value, .legend-value {
+    position: relative;
+}
+
+.overview-value::after, .metric-value::after, .legend-value::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    background-color: rgba(74, 144, 226, 0.1);
+    z-index: -1;
+    animation: pulse 2s infinite;
+}
+

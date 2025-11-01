@@ -5,18 +5,18 @@
         <div class="overview-cards">
             <div class="overview-card">
                 <h3>总用户数</h3>
-                <p class="overview-value" id="total-users">12,458</p>
-                <p class="overview-desc">较上月 <span class="positive-change">+3.2%</span></p>
+                <p class="overview-value" id="total-users">{{data['total_users']}}</p>
+                <p class="overview-desc">较上月 <span class="positive-change">--%</span></p>
             </div>
             <div class="overview-card">
                 <h3>总测评数</h3>
-                <p class="overview-value" id="total-assessments">8,721</p>
-                <p class="overview-desc">较上月 <span class="positive-change">+5.7%</span></p>
+                <p class="overview-value" id="total-assessments">{{data['total_assessments']}}</p>
+                <p class="overview-desc">较上月 <span class="positive-change">--%</span></p>
             </div>
             <div class="overview-card">
                 <h3>总任务数</h3>
-                <p class="overview-value" id="total-tasks">5,346</p>
-                <p class="overview-desc">较上月 <span class="negative-change">-1.2%</span></p>
+                <p class="overview-value" id="total-tasks">{{data['total_tasks']}}</p>
+                <p class="overview-desc">较上月 <span class="negative-change">--%</span></p>
             </div>
         </div>
     </div>
@@ -31,30 +31,30 @@
                     <div class="legend-item">
                         <span class="legend-color high-risk"></span>
                         <span class="legend-label">高风险用户</span>
-                        <span class="legend-value" id="high-risk-count">328</span>
+                        <span class="legend-value" id="high-risk-count">{{data['risk_summary']['high_risk_users']}}</span>
                     </div>
                     <div class="legend-item">
                         <span class="legend-color medium-risk"></span>
                         <span class="legend-label">中风险用户</span>
-                        <span class="legend-value" id="medium-risk-count">845</span>
+                        <span class="legend-value" id="medium-risk-count">{{data['risk_summary']['medium_risk_users']}}</span>
                     </div>
                     <div class="legend-item">
                         <span class="legend-color low-risk"></span>
                         <span class="legend-label">低风险用户</span>
-                        <span class="legend-value" id="low-risk-count">1,257</span>
+                        <span class="legend-value" id="low-risk-count">{{data['risk_summary']['low_risk_users']}}</span>
                     </div>
                 </div>
             </div>
             <div class="risk-metrics">
                 <div class="risk-metric-card">
                     <h3>已解决预警数</h3>
-                    <p class="metric-value" id="resolved-alerts">642</p>
-                    <p class="metric-desc">本周 <span class="positive-change">+12%</span></p>
+                    <p class="metric-value" id="resolved-alerts">{{data['risk_summary']['resolved_warnings']}}</p>
+                    <p class="metric-desc">本周 <span class="positive-change">--%</span></p>
                 </div>
                 <div class="risk-metric-card">
                     <h3>待解决预警数</h3>
-                    <p class="metric-value" id="pending-alerts">287</p>
-                    <p class="metric-desc">本周 <span class="negative-change">-8%</span></p>
+                    <p class="metric-value" id="pending-alerts">{{data['risk_summary']['unresolved_warnings']}}</p>
+                    <p class="metric-desc">本周 <span class="negative-change">--%</span></p>
                 </div>
             </div>
         </div>
