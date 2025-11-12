@@ -63,7 +63,7 @@ export class TaskRecordAllComponent implements OnInit {
     }
     // 查看任务记录详情
     detailOfRecord(recordId: number) {
-        ;
+        this.router.navigate(['/frame/taskRecord/detail', recordId]);
     }
     _jumpToPage(index: number) {
         if (index < 1 || index > this.pageCount) return;

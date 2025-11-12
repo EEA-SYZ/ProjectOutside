@@ -1,0 +1,57 @@
+<section class="content">
+  <!-- 返回按钮 -->
+  <div class="back-button-container mb-4">
+    <button id="back-button" class="back-btn" (click)="backToList()">
+      <i class="fa fa-arrow-left mr-2"></i>返回列表
+    </button>
+  </div>
+
+  <!-- 任务记录卡片 -->
+  <div class="task-record-card">
+    <h1 class="task-title">任务详情</h1>
+    
+    <div class="task-details">
+      <div class="detail-item">
+        <span class="detail-label">任务ID:</span>
+        <span class="detail-value" id="task-id">{{data['id']}}</span>
+      </div>
+      
+      <div class="detail-item">
+        <span class="detail-label">时间:</span>
+        <span class="detail-value" id="task-time">{{data['task_date']}}</span>
+      </div>
+      
+      <div class="detail-item">
+        <span class="detail-label">地点:</span>
+        <span class="detail-value" id="task-location">{{data['location']}}</span>
+      </div>
+      
+      <div class="detail-item">
+        <span class="detail-label">描述:</span>
+        <span class="detail-value" id="task-description">{{data['description']}}</span>
+      </div>
+      
+      <div class="detail-item">
+        <span class="detail-label">严重程度:</span>
+        <span class="detail-value severity high" id="task-severity">{{data['severity']}}</span>
+      </div>
+      
+      <div class="detail-item">
+        <span class="detail-label">伤亡:</span>
+        <span class="detail-value" id="task-casualties">{{data['casualties']}}</span>
+      </div>
+      
+      <div class="detail-item">
+        <span class="detail-label">持续时间:</span>
+        <span class="detail-value" id="task-duration">{{data['duration']}}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 删除记录按钮 -->
+  <div class="delete-record-container mt-6 text-center">
+    <button id="delete-record-button" class="delete-btn">
+      <i class="fa fa-trash mr-2"></i>删除记录
+    </button>
+  </div>
+</section>

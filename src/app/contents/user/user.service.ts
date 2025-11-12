@@ -51,6 +51,7 @@ export class UserService {
                             },
                         ],
                     });
+                    break;
                 }
             }
         });

@@ -7,6 +7,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { TaskRecordRoutingModule } from './taskRecord-routes.module';
 import { TaskRecordService } from './taskRecord.service';
 import { TaskRecordAllComponent } from './taskRecord-all/taskRecord-all.component';
+import { TaskRecordDetailComponent } from './taskRecord-detail/taskRecord-detail.component';
 
 @NgModule({
     imports: [
@@ -19,6 +20,7 @@ import { TaskRecordAllComponent } from './taskRecord-all/taskRecord-all.componen
     ],
     declarations: [
         TaskRecordAllComponent,
+        TaskRecordDetailComponent,
     ],
     exports: [],
     entryComponents: [],

@@ -20,11 +20,11 @@
         <tbody id="tableBody">
             <tr *ngFor="let each of list">
                 <td>{{each['id']}}</td>
-                <td>{{each['task_ date']}}</td>
+                <td>{{each['task_date']}}</td>
                 <td>{{each['location']}}</td>
                 <td>{{each['severity']}}</td>
                 <td>{{each['duration']}}</td>
-                <td><button>详情</button></td>
+                <td><button (click)="detailOfRecord(each['id'])">详情</button></td>
             </tr>
         </tbody>
     </table>

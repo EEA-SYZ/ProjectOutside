@@ -48,7 +48,6 @@
           </tr>
         </thead>
         <tbody id="assessment-list">
-          <!-- 示例记录 -->
           <tr *ngFor="let each of data['assessments']">
             <td>{{each['id']}}</td>
             <td>{{each['date']}}</td>
@@ -76,7 +75,6 @@
           </tr>
         </thead>
         <tbody id="task-list">
-          <!-- 示例记录 -->
           <tr *ngFor="let each of data['task_records']">
             <td>{{each['id']}}</td>
             <td>{{each['date']}}</td>
@@ -105,7 +103,6 @@
           </tr>
         </thead>
         <tbody id="warning-list">
-          <!-- 示例记录 -->
           <tr *ngFor="let each of data['active_warnings']" >
             <td>{{each['id']}}</td>
             <td class="warning-level high">{{each['level']}}</td>
@@ -117,6 +114,13 @@
         </tbody>
       </table>
     </div>
+  </div>
+  
+  <!-- 删除用户按钮 -->
+  <div class="delete-user-container mt-6 text-right">
+    <button id="delete-user-button" class="delete-btn">
+      <i class="fa fa-trash mr-2"></i>删除用户
+    </button>
   </div>
 </section>
 
