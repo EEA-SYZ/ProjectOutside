@@ -18,7 +18,7 @@
             </tr>
         </thead>
         <tbody id="tableBody">
-            <tr *ngFor="let each of list">
+            <tr *ngFor="let each of listManager.list">
                 <td>{{each['id']}}</td>
                 <td>{{each['task_date']}}</td>
                 <td>{{each['location']}}</td>
@@ -32,7 +32,7 @@
     <div class="pagination-controls">
         <div class="page-size-selector">
             <label for="pageSize">每页显示</label>
-            <select id="pageSize" (change)="changePageSize($event.target.value)">
+            <select id="pageSize" (change)="listManager.changeSize($event.target.value)">
                 <option value=10>10</option>
                 <option value=15>15</option>
                 <option value=20>20</option>
@@ -43,15 +43,15 @@
         </div>
         
         <div class="pagination-buttons">
-            <button id="prevPage" (click)="changePageIndex(-1)">上一页</button>
-            <span id="pageInfo">第 <span id = 'pageIndex'>1</span>/<span id = 'pageCount'>{{pageCount}}</span> 页</span>
-            <button id="nextPage" (click)="changePageIndex(1)">下一页</button>
+            <button id="prevPage" (click)="listManager.turnPage(-1)">上一页</button>
+            <span id="pageInfo">第 <span id = 'pageIndex'>{{listManager.index}}</span>/<span id = 'pageCount'>{{listManager._pageCount}}</span> 页</span>
+            <button id="nextPage" (click)="listManager.turnPage(1)">下一页</button>
         </div>
         
         <div class="page-jump">
             <label for="jumpToPage">跳转至</label>
             <input type="number" id="jumpToPage" min="1" placeholder="页码">
-            <button id="jumpButton" (click)="jumpToPage()">确定</button>
+            <button id="jumpButton" (click)="listManager._turnToPage()">确定</button>
         </div>
     </div>
 </section>
